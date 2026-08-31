@@ -6,10 +6,12 @@
     <title>Floyd Verjans</title>
     <style>
         :root {
+            /* Farbwelt - jetzt mit weicheren Pastelltönen und neuem Grün */
             --bg-lavender: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
-            --bg-blue: linear-gradient(135deg, #5ac8fa 0%, #007aff 100%);
-            --bg-dark: linear-gradient(135deg, #1c1c1e 0%, #101010 100%);
+            --bg-blue: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);    /* Neues Pastell-Blau */
+            --bg-green: linear-gradient(135deg, #b2f5c6 0%, #79dca1 100%);   /* Neues Pastell-Grün */
             --bg-sunset: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            --bg-dark: linear-gradient(135deg, #1c1c1e 0%, #101010 100%);
         }
 
         * {
@@ -19,7 +21,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* 1. Zwingt den Hintergrund hinter dem Body auf dunkel (verhindert weiße Blitzer beim Laden/Wischen) */
         html {
             background-color: #101010; 
             width: 100%;
@@ -27,26 +28,26 @@
             overflow: hidden;
         }
 
-        /* 2. Nagelt die Seite fest und blockiert Mobile-Scrollen komplett */
         body {
             position: fixed; 
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Fallback */
-            height: 100dvh; /* Mobile Fix für Adressleisten */
+            height: 100%;
+            height: 100dvh;
             overflow: hidden;
             overscroll-behavior: none; 
-            touch-action: none; /* Blockt Safari/Chrome Bounce-Effekte absolut ab */
+            touch-action: none; 
             transition: background 1.2s ease-in-out;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* 3. DIESE KLASSEN HABEN GEFEHLT: Die sind nötig, damit das Script die Farbe ändern kann! */
-        body.theme-blue { background: var(--bg-blue); }
-        body.theme-dark { background: var(--bg-dark); }
-        body.theme-sunset { background: var(--bg-sunset); }
+        /* Dynamische Themes */
         body.theme-lavender { background: var(--bg-lavender); }
+        body.theme-blue { background: var(--bg-blue); }
+        body.theme-green { background: var(--bg-green); }
+        body.theme-sunset { background: var(--bg-sunset); }
+        body.theme-dark { background: var(--bg-dark); }
 
         canvas {
             display: block;
@@ -56,7 +57,7 @@
             top: 0;
             left: 0;
             z-index: 1;
-            touch-action: none; /* Sicherheitshalber auch auf dem Canvas Scrollen blockieren */
+            touch-action: none; 
         }
 
         .branding {
@@ -159,10 +160,11 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .color-dot[data-theme="theme-blue"] { background: var(--bg-blue); }
-        .color-dot[data-theme="theme-dark"] { background: var(--bg-dark); }
-        .color-dot[data-theme="theme-sunset"] { background: var(--bg-sunset); }
         .color-dot[data-theme="theme-lavender"] { background: var(--bg-lavender); }
+        .color-dot[data-theme="theme-blue"] { background: var(--bg-blue); }
+        .color-dot[data-theme="theme-green"] { background: var(--bg-green); }
+        .color-dot[data-theme="theme-sunset"] { background: var(--bg-sunset); }
+        .color-dot[data-theme="theme-dark"] { background: var(--bg-dark); }
 
         .color-dot.active {
             box-shadow: 0 0 0 3px rgba(255,255,255,0.9), 0 4px 10px rgba(0,0,0,0.15);
@@ -198,7 +200,8 @@
         }
     </style>
 </head>
-<body class="theme-blue">
+<!-- Lavender als Default Body-Klasse gesetzt -->
+<body class="theme-lavender">
 
     <canvas id="canvas"></canvas>
     
@@ -211,10 +214,12 @@
     </div>
 
     <div class="control-panel" id="controlPanel">
-        <button class="color-dot active" data-theme="theme-blue" aria-label="Blue"></button>
-        <button class="color-dot" data-theme="theme-dark" aria-label="Dark Mode"></button>
+        <!-- Lavender Button hat nun die "active" Klasse -->
+        <button class="color-dot active" data-theme="theme-lavender" aria-label="Lavender"></button>
+        <button class="color-dot" data-theme="theme-blue" aria-label="Pastel Blue"></button>
+        <button class="color-dot" data-theme="theme-green" aria-label="Pastel Green"></button>
         <button class="color-dot" data-theme="theme-sunset" aria-label="Sunset"></button>
-        <button class="color-dot" data-theme="theme-lavender" aria-label="Lavender"></button>
+        <button class="color-dot" data-theme="theme-dark" aria-label="Dark Mode"></button>
         
         <div class="divider"></div>
         
