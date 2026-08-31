@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Chrono Café | Fuel For Time Travelers</title>
+    <title>Lebenslauf | Julian Steinbach</title>
     <style>
         :root {
-            --bg-color: #1a1820;
-            --text-main: #f5eedc;
-            --accent-color: #e94560;
-            --secondary-bg: #2a2634;
-            --highlight: #0f3460;
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --text-color: #333333;
+            --light-bg: #f8f9fa;
+            --border-color: #e0e0e0;
         }
 
         * {
@@ -20,216 +21,370 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #eaeff3;
+            color: var(--text-color);
             line-height: 1.6;
+            padding: 2rem 1rem;
         }
 
-        header {
-            background-color: var(--highlight);
-            padding: 1rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--accent-color);
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(26, 24, 32, 0.8), rgba(26, 24, 32, 0.9)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1920&q=80') center/cover;
-            border-bottom: 3px solid var(--accent-color);
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            color: #d1c8b4;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-
-        .cta-button:hover {
-            background-color: #ff5773;
-            transform: translateY(-3px);
-        }
-
-        .menu-section {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .menu-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            color: var(--accent-color);
-        }
-
-        .grid {
+        .resume-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 300px 1fr;
         }
 
-        .card {
-            background-color: var(--secondary-bg);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: left;
-            transition: transform 0.3s;
-            border: 1px solid #3d374a;
+        /* Linke Spalte: Sidebar */
+        .sidebar {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 3rem 2rem;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
-        .card h3 {
+        .profile-title {
+            font-size: 1.1rem;
+            color: var(--accent-color);
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .sidebar-heading {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-list span {
+            color: #bdc3c7;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+
+        .skill-bar {
+            height: 6px;
+            background-color: var(--secondary-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background-color: var(--accent-color);
+        }
+
+        /* Rechte Spalte: Hauptinhalt */
+        .main-content {
+            padding: 3rem 4rem;
+            background-color: #ffffff;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
             font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #fff;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background-color: var(--border-color);
+            margin-left: 1rem;
+        }
+
+        .summary-text {
+            font-size: 1rem;
+            color: #555;
+            text-align: justify;
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .timeline-header {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
         }
 
-        .price {
-            color: var(--accent-color);
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
         }
 
-        .reviews {
-            background-color: var(--highlight);
-            padding: 60px 5%;
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .review-quote {
-            font-style: italic;
-            font-size: 1.3rem;
-            max-width: 800px;
-            margin: 0 auto 20px auto;
-        }
-
-        .reviewer {
-            font-weight: bold;
-            color: var(--accent-color);
-        }
-
-        footer {
-            background-color: #110f15;
-            text-align: center;
-            padding: 30px;
-            margin-top: auto;
-            border-top: 1px solid #2a2634;
-        }
-        
-        footer p {
+        .job-date {
             font-size: 0.9rem;
-            color: #888;
+            font-weight: 600;
+            color: var(--accent-color);
+            background-color: var(--light-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
         }
 
+        .job-company {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .job-description {
+            list-style-type: none;
+        }
+
+        .job-description li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .job-description li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Mobile Anpassungen */
+        @media (max-width: 850px) {
+            .resume-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-content {
+                padding: 2rem;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+
+            .job-date {
+                margin-top: 0.5rem;
+                display: inline-block;
+            }
+        }
+
+        /* Druck-Optimierung */
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+
+            .resume-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">The Chrono Café</div>
-        <nav>
-            <ul>
-                <li><a href="#menu">Today's Roasts</a></li>
-                <li><a href="#about">Temporal Origins</a></li>
-                <li><a href="#contact">Hologram Us</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="resume-container">
+        
+        <!-- Linke Sidebar -->
+        <aside class="sidebar">
+            <h1 class="profile-name">Julian<br>Steinbach</h1>
+            <h2 class="profile-title">Senior Projektmanager</h2>
 
-    <main>
-        <section class="hero">
-            <h1>Coffee Across Centuries</h1>
-            <p>Need a caffeine boost before your next jump to the Cretaceous period? Whether you are arriving from 1892 or 2092, we have the perfect brew to calibrate your internal chronometer.</p>
-            <a href="#menu" class="cta-button">View the Menu</a>
-        </section>
-
-        <section id="menu" class="menu-section">
-            <h2>Signatures from the Timeline</h2>
-            <div class="grid">
-                
-                <article class="card">
-                    <h3>The Grandfather Paradox <span class="price">4 Credits</span></h3>
-                    <p>A dark roast so potent, it defies logic. We brew it using beans harvested tomorrow, roasted yesterday. Expect heavy notes of dark chocolate, volcanic ash, and impending realization.</p>
-                </article>
-
-                <article class="card">
-                    <h3>Victorian Vanilla Latte <span class="price">5 Credits</span></h3>
-                    <p>Authentic 19th-century vanilla pods mixed with perfectly steamed oat milk. Served in a copper mug and finished with a dusting of steampunk cinnamon. Top hat not included.</p>
-                </article>
-
-                <article class="card">
-                    <h3>T-Rex Espresso <span class="price">3 Credits</span></h3>
-                    <p>A highly concentrated triple-shot that hits you like a meteor. Guaranteed to make your arms jitter and heighten your fight-or-flight response. Best consumed before hunting.</p>
-                </article>
-
-                <article class="card">
-                    <h3>Cyberpunk Cold Brew <span class="price">6 Credits</span></h3>
-                    <p>Steeped for 48 hours in zero gravity. We infuse this icy concoction with bioluminescent mint and a hint of synthetic hazelnut. It glows slightly in the dark.</p>
-                </article>
-
+            <div class="sidebar-section">
+                <h3 class="sidebar-heading">Kontakt</h3>
+                <ul class="contact-list">
+                    <li>
+                        <span>E-Mail</span>
+                        julian.steinbach@mail-netzwerk.de
+                    </li>
+                    <li>
+                        <span>Telefon</span>
+                        +49 151 458 92 104
+                    </li>
+                    <li>
+                        <span>Standort</span>
+                        Hamburg, Deutschland
+                    </li>
+                    <li>
+                        <span>Web</span>
+                        linkedin.com/in/jsteinbach
+                    </li>
+                </ul>
             </div>
-        </section>
 
-        <section class="reviews">
-            <p class="review-quote">"Easily the best nitro-brew in the 24th century. The service is so fast, they handed me my coffee three minutes before I even walked through the door."</p>
-            <p class="reviewer">— Agent 42, Time Enforcement Bureau</p>
-        </section>
-    </main>
+            <div class="sidebar-section">
+                <h3 class="sidebar-heading">Kernkompetenzen</h3>
+                <ul class="skills-list">
+                    <li>
+                        <span class="skill-name">Agiles Projektmanagement</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
+                    </li>
+                    <li>
+                        <span class="skill-name">Ressourcenplanung</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                    </li>
+                    <li>
+                        <span class="skill-name">Change Management</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
+                    </li>
+                    <li>
+                        <span class="skill-name">Stakeholder-Kommunikation</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
+                    </li>
+                    <li>
+                        <span class="skill-name">Prozessoptimierung</span>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
+                    </li>
+                </ul>
+            </div>
 
-    <footer>
-        <p>Located at the intersection of 5th Avenue and the Year 3045.</p>
-        <p>&copy; 2026-3026 The Chrono Café. All temporal anomalies reserved.</p>
-    </footer>
+            <div class="sidebar-section">
+                <h3 class="sidebar-heading">Sprachen</h3>
+                <ul class="contact-list">
+                    <li>
+                        <span>Deutsch</span>
+                        Muttersprache
+                    </li>
+                    <li>
+                        <span>Englisch</span>
+                        Verhandlungssicher (C1)
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Rechter Hauptbereich -->
+        <main class="main-content">
+            
+            <section class="section">
+                <h2 class="section-title">Kurzprofil</h2>
+                <p class="summary-text">
+                    Ergebnisorientierter Projektmanager mit langjähriger Erfahrung in der Leitung funktionsübergreifender Teams. Spezialisiert auf die strategische Planung und operative Umsetzung komplexer Initiativen. Ein starker Fokus liegt auf der nachhaltigen Prozessoptimierung und der Implementierung moderner Arbeitsmethoden zur Steigerung der Teameffizienz und Kundenzufriedenheit.
+                </p>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Berufserfahrung</h2>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="job-title">Leiter Projektmanagement</h3>
+                        <span class="job-date">Okt. 2019 – Heute</span>
+                    </div>
+                    <div class="job-company">TechNova Solutions GmbH, Hamburg</div>
+                    <ul class="job-description">
+                        <li>Fachliche und disziplinarische Führung eines interdisziplinären Teams von 12 Mitarbeitern.</li>
+                        <li>Verantwortung für das gesamte Projektportfolio mit einem jährlichen Budget im siebenstelligen Bereich.</li>
+                        <li>Erfolgreiche Einführung agiler Methoden, was die Entwicklungszyklen messbar um 20% verkürzte.</li>
+                        <li>Leitung von Verhandlungen mit externen Dienstleistern und Aufbau langfristiger Partnerschaften.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="job-title">Projektkoordinator</h3>
+                        <span class="job-date">März 2015 – Sept. 2019</span>
+                    </div>
+                    <div class="job-company">Global Dynamics Enterprises, Frankfurt am Main</div>
+                    <ul class="job-description">
+                        <li>Überwachung von Projektmeilensteinen sowie kontinuierliches Risikomanagement in der Planungsphase.</li>
+                        <li>Erstellung von detaillierten Reportings und Präsentationen für das obere Management.</li>
+                        <li>Organisation und Moderation von Workshops zur Definition von Systemanforderungen.</li>
+                        <li>Schnittstellenfunktion zwischen der IT-Abteilung und den operativen Fachbereichen.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Ausbildung</h2>
+                
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="job-title">Master of Science in Business Administration</h3>
+                        <span class="job-date">Okt. 2012 – Feb. 2015</span>
+                    </div>
+                    <div class="job-company">Rheinische Friedrich-Wilhelms-Universität Bonn</div>
+                    <ul class="job-description">
+                        <li>Schwerpunkte: Unternehmensführung, Innovationsmanagement und Organisationsentwicklung.</li>
+                        <li>Masterthesis über Strategien zur digitalen Transformation in mittelständischen Unternehmen.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-header">
+                        <h3 class="job-title">Bachelor of Arts in Betriebswirtschaftslehre</h3>
+                        <span class="job-date">Sept. 2009 – Aug. 2012</span>
+                    </div>
+                    <div class="job-company">Hochschule für angewandte Wissenschaften, München</div>
+                    <ul class="job-description">
+                        <li>Praxissemester in der strategischen Unternehmensplanung absolviert.</li>
+                    </ul>
+                </div>
+            </section>
+
+        </main>
+    </div>
 
 </body>
 </html>
