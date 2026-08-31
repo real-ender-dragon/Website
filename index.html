@@ -2,389 +2,373 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lebenslauf | Julian Steinbach</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Floyd Verjans</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #34495e;
-            --accent-color: #3498db;
-            --text-color: #333333;
-            --light-bg: #f8f9fa;
-            --border-color: #e0e0e0;
+            /* Neue Farbwelt: Default ist Blue, plus Dark Mode */
+            --bg-blue: linear-gradient(135deg, #5ac8fa 0%, #007aff 100%);
+            --bg-dark: linear-gradient(135deg, #1c1c1e 0%, #101010 100%);
+            --bg-sunset: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
+            --bg-lavender: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #eaeff3;
-            color: var(--text-color);
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
-
-        .resume-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+        body, html {
+            width: 100%;
+            height: 100%;
             overflow: hidden;
-            display: grid;
-            grid-template-columns: 300px 1fr;
+            background: var(--bg-blue); /* Default Theme */
+            transition: background 1.2s ease-in-out;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
-        /* Linke Spalte: Sidebar */
-        .sidebar {
-            background-color: var(--primary-color);
-            color: #ffffff;
-            padding: 3rem 2rem;
+        /* Dynamische Themes */
+        body.theme-dark { background: var(--bg-dark); }
+        body.theme-sunset { background: var(--bg-sunset); }
+        body.theme-lavender { background: var(--bg-lavender); }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
         }
 
-        .profile-name {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            line-height: 1.2;
-        }
-
-        .profile-title {
-            font-size: 1.1rem;
-            color: var(--accent-color);
-            margin-bottom: 2.5rem;
-            font-weight: 500;
+        .branding {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.75rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 500;
+            z-index: 5;
+            pointer-events: none;
+            user-select: none;
         }
 
-        .sidebar-section {
-            margin-bottom: 2.5rem;
-        }
-
-        .sidebar-heading {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-
-        .contact-list {
-            list-style: none;
-        }
-
-        .contact-list li {
-            margin-bottom: 0.8rem;
-            font-size: 0.95rem;
+        /* --- Apple-like UI (Optimierte Breiten) --- */
+        
+        .menu-toggle {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            width: 56px;  /* Einheitliche Breite */
+            height: 56px;
+            border-radius: 28px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            z-index: 100;
+            cursor: pointer;
             display: flex;
             flex-direction: column;
-        }
-
-        .contact-list span {
-            color: #bdc3c7;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            margin-bottom: 0.2rem;
-        }
-
-        .skills-list {
-            list-style: none;
-        }
-
-        .skills-list li {
-            margin-bottom: 1rem;
-        }
-
-        .skill-name {
-            font-size: 0.95rem;
-            margin-bottom: 0.3rem;
-            display: block;
-        }
-
-        .skill-bar {
-            height: 6px;
-            background-color: var(--secondary-color);
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background-color: var(--accent-color);
-        }
-
-        /* Rechte Spalte: Hauptinhalt */
-        .main-content {
-            padding: 3rem 4rem;
-            background-color: #ffffff;
-        }
-
-        .section {
-            margin-bottom: 3rem;
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            display: flex;
+            justify-content: center;
             align-items: center;
+            gap: 6px;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .section-title::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background-color: var(--border-color);
-            margin-left: 1rem;
+        .menu-toggle:active {
+            transform: scale(0.9);
         }
 
-        .summary-text {
-            font-size: 1rem;
-            color: #555;
-            text-align: justify;
+        .menu-toggle span {
+            width: 22px;
+            height: 2px;
+            background: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s ease;
         }
 
-        .timeline-item {
-            margin-bottom: 2rem;
-            position: relative;
-        }
+        .menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .menu-toggle.open span:nth-child(2) { opacity: 0; transform: scale(0); }
+        .menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-        .timeline-header {
+        .control-panel {
+            position: fixed;
+            top: 96px; /* 24 (top) + 56 (height) + 16 (gap) */
+            right: 24px;
+            width: 56px; /* Exakt gleiche Breite wie Button */
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(25px) saturate(200%);
+            -webkit-backdrop-filter: blur(25px) saturate(200%);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 28px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            z-index: 99;
             display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.5rem;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px 0;
+            gap: 16px;
+            
+            /* Animations-Status */
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px) scale(0.9);
+            transform-origin: top right;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .job-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .control-panel.open {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateY(0) scale(1);
         }
 
-        .job-date {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--accent-color);
-            background-color: var(--light-bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
+        .divider {
+            width: 32px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 1px;
         }
 
-        .job-company {
-            font-size: 1rem;
-            font-weight: 500;
-            color: #7f8c8d;
-            margin-bottom: 1rem;
+        /* Interaktive Elemente */
+        .color-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .job-description {
-            list-style-type: none;
+        .color-dot[data-theme="theme-blue"] { background: var(--bg-blue); }
+        .color-dot[data-theme="theme-dark"] { background: var(--bg-dark); }
+        .color-dot[data-theme="theme-sunset"] { background: var(--bg-sunset); }
+        .color-dot[data-theme="theme-lavender"] { background: var(--bg-lavender); }
+
+        .color-dot.active {
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.9), 0 4px 10px rgba(0,0,0,0.15);
+            transform: scale(1.05);
         }
 
-        .job-description li {
-            position: relative;
-            padding-left: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #555;
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            transition: all 0.2s ease;
         }
 
-        .job-description li::before {
-            content: "•";
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.2rem;
-            position: absolute;
-            left: 0;
-            top: -2px;
+        .icon-btn.active {
+            background: #ffffff;
+            color: #1c1c1e;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        /* Mobile Anpassungen */
-        @media (max-width: 850px) {
-            .resume-container {
-                grid-template-columns: 1fr;
-            }
-
-            .main-content {
-                padding: 2rem;
-            }
-
-            .timeline-header {
-                flex-direction: column;
-            }
-
-            .job-date {
-                margin-top: 0.5rem;
-                display: inline-block;
-            }
-        }
-
-        /* Druck-Optimierung */
-        @media print {
-            body {
-                background-color: #fff;
-                padding: 0;
-            }
-
-            .resume-container {
-                box-shadow: none;
-                border-radius: 0;
-                max-width: 100%;
+        @media (max-width: 768px) {
+            .branding {
+                right: 50%;
+                transform: translateX(50%);
+                bottom: 20px;
             }
         }
     </style>
 </head>
-<body>
+<body class="theme-blue">
 
-    <div class="resume-container">
-        
-        <!-- Linke Sidebar -->
-        <aside class="sidebar">
-            <h1 class="profile-name">Julian<br>Steinbach</h1>
-            <h2 class="profile-title">Senior Projektmanager</h2>
+    <canvas id="canvas"></canvas>
+    
+    <div class="branding">floydverjans.de</div>
 
-            <div class="sidebar-section">
-                <h3 class="sidebar-heading">Kontakt</h3>
-                <ul class="contact-list">
-                    <li>
-                        <span>E-Mail</span>
-                        julian.steinbach@mail-netzwerk.de
-                    </li>
-                    <li>
-                        <span>Telefon</span>
-                        +49 151 458 92 104
-                    </li>
-                    <li>
-                        <span>Standort</span>
-                        Hamburg, Deutschland
-                    </li>
-                    <li>
-                        <span>Web</span>
-                        linkedin.com/in/jsteinbach
-                    </li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-heading">Kernkompetenzen</h3>
-                <ul class="skills-list">
-                    <li>
-                        <span class="skill-name">Agiles Projektmanagement</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 95%;"></div></div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Ressourcenplanung</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Change Management</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 80%;"></div></div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Stakeholder-Kommunikation</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 90%;"></div></div>
-                    </li>
-                    <li>
-                        <span class="skill-name">Prozessoptimierung</span>
-                        <div class="skill-bar"><div class="skill-progress" style="width: 85%;"></div></div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="sidebar-section">
-                <h3 class="sidebar-heading">Sprachen</h3>
-                <ul class="contact-list">
-                    <li>
-                        <span>Deutsch</span>
-                        Muttersprache
-                    </li>
-                    <li>
-                        <span>Englisch</span>
-                        Verhandlungssicher (C1)
-                    </li>
-                </ul>
-            </div>
-        </aside>
-
-        <!-- Rechter Hauptbereich -->
-        <main class="main-content">
-            
-            <section class="section">
-                <h2 class="section-title">Kurzprofil</h2>
-                <p class="summary-text">
-                    Ergebnisorientierter Projektmanager mit langjähriger Erfahrung in der Leitung funktionsübergreifender Teams. Spezialisiert auf die strategische Planung und operative Umsetzung komplexer Initiativen. Ein starker Fokus liegt auf der nachhaltigen Prozessoptimierung und der Implementierung moderner Arbeitsmethoden zur Steigerung der Teameffizienz und Kundenzufriedenheit.
-                </p>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title">Berufserfahrung</h2>
-                
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <h3 class="job-title">Leiter Projektmanagement</h3>
-                        <span class="job-date">Okt. 2019 – Heute</span>
-                    </div>
-                    <div class="job-company">TechNova Solutions GmbH, Hamburg</div>
-                    <ul class="job-description">
-                        <li>Fachliche und disziplinarische Führung eines interdisziplinären Teams von 12 Mitarbeitern.</li>
-                        <li>Verantwortung für das gesamte Projektportfolio mit einem jährlichen Budget im siebenstelligen Bereich.</li>
-                        <li>Erfolgreiche Einführung agiler Methoden, was die Entwicklungszyklen messbar um 20% verkürzte.</li>
-                        <li>Leitung von Verhandlungen mit externen Dienstleistern und Aufbau langfristiger Partnerschaften.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <h3 class="job-title">Projektkoordinator</h3>
-                        <span class="job-date">März 2015 – Sept. 2019</span>
-                    </div>
-                    <div class="job-company">Global Dynamics Enterprises, Frankfurt am Main</div>
-                    <ul class="job-description">
-                        <li>Überwachung von Projektmeilensteinen sowie kontinuierliches Risikomanagement in der Planungsphase.</li>
-                        <li>Erstellung von detaillierten Reportings und Präsentationen für das obere Management.</li>
-                        <li>Organisation und Moderation von Workshops zur Definition von Systemanforderungen.</li>
-                        <li>Schnittstellenfunktion zwischen der IT-Abteilung und den operativen Fachbereichen.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section class="section">
-                <h2 class="section-title">Ausbildung</h2>
-                
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <h3 class="job-title">Master of Science in Business Administration</h3>
-                        <span class="job-date">Okt. 2012 – Feb. 2015</span>
-                    </div>
-                    <div class="job-company">Rheinische Friedrich-Wilhelms-Universität Bonn</div>
-                    <ul class="job-description">
-                        <li>Schwerpunkte: Unternehmensführung, Innovationsmanagement und Organisationsentwicklung.</li>
-                        <li>Masterthesis über Strategien zur digitalen Transformation in mittelständischen Unternehmen.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="timeline-header">
-                        <h3 class="job-title">Bachelor of Arts in Betriebswirtschaftslehre</h3>
-                        <span class="job-date">Sept. 2009 – Aug. 2012</span>
-                    </div>
-                    <div class="job-company">Hochschule für angewandte Wissenschaften, München</div>
-                    <ul class="job-description">
-                        <li>Praxissemester in der strategischen Unternehmensplanung absolviert.</li>
-                    </ul>
-                </div>
-            </section>
-
-        </main>
+    <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 
+    <!-- Panel via Event-Delegation optimiert -->
+    <div class="control-panel" id="controlPanel">
+        <button class="color-dot active" data-theme="theme-blue" aria-label="Blue"></button>
+        <button class="color-dot" data-theme="theme-dark" aria-label="Dark Mode"></button>
+        <button class="color-dot" data-theme="theme-sunset" aria-label="Sunset"></button>
+        <button class="color-dot" data-theme="theme-lavender" aria-label="Lavender"></button>
+        
+        <div class="divider"></div>
+        
+        <button class="icon-btn active" data-anim="network" aria-label="Network Mode">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="18" cy="5" r="3"/>
+                <circle cx="6" cy="12" r="3"/>
+                <circle cx="18" cy="19" r="3"/>
+                <line x1="8.59" y1="10.51" x2="15.42" y2="6.49"/>
+                <line x1="15.41" y1="17.51" x2="8.59" y2="13.49"/>
+            </svg>
+        </button>
+        
+        <button class="icon-btn" data-anim="swarm" aria-label="Swarm Mode">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="2"/>
+                <path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/>
+                <path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/>
+                <path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        // --- UI & Event Logik (Optimiert) ---
+        const menuToggle = document.getElementById('menuToggle');
+        const controlPanel = document.getElementById('controlPanel');
+        let currentMode = 'network'; 
+
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('open');
+            controlPanel.classList.toggle('open');
+        });
+
+        // Zentrale Event-Delegation für das gesamte Panel
+        controlPanel.addEventListener('click', (e) => {
+            const colorBtn = e.target.closest('.color-dot');
+            if (colorBtn) {
+                document.querySelectorAll('.color-dot').forEach(b => b.classList.remove('active'));
+                colorBtn.classList.add('active');
+                document.body.className = colorBtn.getAttribute('data-theme');
+            }
+
+            const animBtn = e.target.closest('.icon-btn');
+            if (animBtn) {
+                document.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
+                animBtn.classList.add('active');
+                currentMode = animBtn.getAttribute('data-anim');
+            }
+        });
+
+        // --- Performance-Optimierte Partikel Engine ---
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 140 };
+        // Vorberechnete Konstanten für Mathe-Speedup (verhindert teures Math.sqrt)
+        const MOUSE_RADIUS_SQ = mouse.radius * mouse.radius;
+        const SWARM_RADIUS = 350;
+        const SWARM_RADIUS_SQ = SWARM_RADIUS * SWARM_RADIUS;
+
+        const resize = () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        };
+
+        window.addEventListener('resize', resize);
+        
+        const updateMouse = (x, y) => { mouse.x = x; mouse.y = y; };
+        const resetMouse = () => { mouse.x = null; mouse.y = null; };
+
+        window.addEventListener('mousemove', e => updateMouse(e.clientX, e.clientY));
+        window.addEventListener('mouseout', resetMouse);
+        window.addEventListener('touchstart', e => updateMouse(e.touches[0].clientX, e.touches[0].clientY));
+        window.addEventListener('touchmove', e => updateMouse(e.touches[0].clientX, e.touches[0].clientY));
+        window.addEventListener('touchend', resetMouse);
+
+        class Particle {
+            constructor() {
+                this.size = Math.random() * 2 + 0.8;
+                this.x = Math.random() * (innerWidth - this.size * 2) + this.size;
+                this.y = Math.random() * (innerHeight - this.size * 2) + this.size;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+            }
+
+            update() {
+                // Wand-Kollision
+                if (this.x > canvas.width || this.x < 0) this.vx *= -1;
+                if (this.y > canvas.height || this.y < 0) this.vy *= -1;
+
+                if (mouse.x !== null) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (currentMode === 'network' && distSq < MOUSE_RADIUS_SQ) {
+                        const dist = Math.sqrt(distSq); // Wird nur in unmittelbarer Nähe aufgerufen
+                        const force = (mouse.radius - dist) / mouse.radius;
+                        this.x -= (dx / dist) * force * 6;
+                        this.y -= (dy / dist) * force * 6;
+                    } 
+                    else if (currentMode === 'swarm' && distSq < SWARM_RADIUS_SQ) {
+                        const dist = Math.sqrt(distSq);
+                        const force = (SWARM_RADIUS - dist) / SWARM_RADIUS;
+                        this.x += (dx / dist) * force * 2;
+                        this.y += (dy / dist) * force * 2;
+                    }
+                }
+                
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const count = Math.min(Math.floor((innerWidth * innerHeight) / 11000), 120);
+            for (let i = 0; i < count; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            
+            const thresholdSq = (canvas.width / 12) * (canvas.height / 12);
+            
+            // 1. Linien berechnen & zeichnen (mit Distanz-Quadraten)
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distSq = dx * dx + dy * dy;
+                    
+                    if (distSq < thresholdSq) {
+                        // Lineare Approximation ohne Quadratwurzel = massiver Performance-Boost
+                        const opacity = 1 - (distSq / thresholdSq);
+                        ctx.strokeStyle = `rgba(255, 255, 255, ${opacity * 0.4})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            // 2. Partikel updaten und in EINEM einzigen Batch zeichnen
+            ctx.beginPath();
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI * 2);
+            }
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.fill();
+        }
+
+        resize(); // Start initialisiert
+        animate();
+    </script>
 </body>
 </html>
