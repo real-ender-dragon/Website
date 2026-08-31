@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Chrono Café | Fuel For Time Travelers</title>
+    <style>
+        :root {
+            --bg-color: #1a1820;
+            --text-main: #f5eedc;
+            --accent-color: #e94560;
+            --secondary-bg: #2a2634;
+            --highlight: #0f3460;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--highlight);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(26, 24, 32, 0.8), rgba(26, 24, 32, 0.9)), url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1920&q=80') center/cover;
+            border-bottom: 3px solid var(--accent-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+            color: #d1c8b4;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .cta-button:hover {
+            background-color: #ff5773;
+            transform: translateY(-3px);
+        }
+
+        .menu-section {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .menu-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--accent-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--secondary-bg);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: left;
+            transition: transform 0.3s;
+            border: 1px solid #3d374a;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .price {
+            color: var(--accent-color);
+        }
+
+        .reviews {
+            background-color: var(--highlight);
+            padding: 60px 5%;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .review-quote {
+            font-style: italic;
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+        }
+
+        .reviewer {
+            font-weight: bold;
+            color: var(--accent-color);
+        }
+
+        footer {
+            background-color: #110f15;
+            text-align: center;
+            padding: 30px;
+            margin-top: auto;
+            border-top: 1px solid #2a2634;
+        }
+        
+        footer p {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">The Chrono Café</div>
+        <nav>
+            <ul>
+                <li><a href="#menu">Today's Roasts</a></li>
+                <li><a href="#about">Temporal Origins</a></li>
+                <li><a href="#contact">Hologram Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Coffee Across Centuries</h1>
+            <p>Need a caffeine boost before your next jump to the Cretaceous period? Whether you are arriving from 1892 or 2092, we have the perfect brew to calibrate your internal chronometer.</p>
+            <a href="#menu" class="cta-button">View the Menu</a>
+        </section>
+
+        <section id="menu" class="menu-section">
+            <h2>Signatures from the Timeline</h2>
+            <div class="grid">
+                
+                <article class="card">
+                    <h3>The Grandfather Paradox <span class="price">4 Credits</span></h3>
+                    <p>A dark roast so potent, it defies logic. We brew it using beans harvested tomorrow, roasted yesterday. Expect heavy notes of dark chocolate, volcanic ash, and impending realization.</p>
+                </article>
+
+                <article class="card">
+                    <h3>Victorian Vanilla Latte <span class="price">5 Credits</span></h3>
+                    <p>Authentic 19th-century vanilla pods mixed with perfectly steamed oat milk. Served in a copper mug and finished with a dusting of steampunk cinnamon. Top hat not included.</p>
+                </article>
+
+                <article class="card">
+                    <h3>T-Rex Espresso <span class="price">3 Credits</span></h3>
+                    <p>A highly concentrated triple-shot that hits you like a meteor. Guaranteed to make your arms jitter and heighten your fight-or-flight response. Best consumed before hunting.</p>
+                </article>
+
+                <article class="card">
+                    <h3>Cyberpunk Cold Brew <span class="price">6 Credits</span></h3>
+                    <p>Steeped for 48 hours in zero gravity. We infuse this icy concoction with bioluminescent mint and a hint of synthetic hazelnut. It glows slightly in the dark.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <section class="reviews">
+            <p class="review-quote">"Easily the best nitro-brew in the 24th century. The service is so fast, they handed me my coffee three minutes before I even walked through the door."</p>
+            <p class="reviewer">— Agent 42, Time Enforcement Bureau</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Located at the intersection of 5th Avenue and the Year 3045.</p>
+        <p>&copy; 2026-3026 The Chrono Café. All temporal anomalies reserved.</p>
+    </footer>
+
+</body>
+</html>
