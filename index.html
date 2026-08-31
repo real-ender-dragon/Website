@@ -7,10 +7,11 @@
     <style>
         :root {
             /* Neue Farbwelt: Default ist Blue, plus Dark Mode */
+            --bg-lavender: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             --bg-blue: linear-gradient(135deg, #5ac8fa 0%, #007aff 100%);
             --bg-dark: linear-gradient(135deg, #1c1c1e 0%, #101010 100%);
             --bg-sunset: linear-gradient(135deg, #ffafbd 0%, #ffc3a0 100%);
-            --bg-lavender: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            
         }
 
         * {
@@ -22,23 +23,33 @@
 
         body, html {
             width: 100%;
-            height: 100%;
+            /* 100dvh = Dynamic Viewport Height (passt sich exakt an mobile Adressleisten an) */
+            height: 100dvh; 
+            margin: 0;
+            padding: 0;
             overflow: hidden;
-            background: var(--bg-blue); /* Default Theme */
+            /* Verhindert das Wischen/Ziehen der Seite auf Touchscreens */
+            overscroll-behavior: none; 
+        }
+
+        body {
+            /* Nagelt den Body komplett auf dem Bildschirm fest */
+            position: fixed; 
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-blue);
             transition: background 1.2s ease-in-out;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
-
-        /* Dynamische Themes */
-        body.theme-dark { background: var(--bg-dark); }
-        body.theme-sunset { background: var(--bg-sunset); }
-        body.theme-lavender { background: var(--bg-lavender); }
 
         canvas {
             display: block;
             width: 100%;
             height: 100%;
-            position: absolute;
+            /* Fixed sorgt dafür, dass sich der Canvas niemals beim Scrollen verschiebt */
+            position: fixed; 
             top: 0;
             left: 0;
             z-index: 1;
